@@ -1,0 +1,39 @@
+{
+  "table": "staging_marketing_campaign",
+  "rules": [
+    {
+      "field": "ID",
+      "rule_type": "uniqueness",
+      "description": "Each customer ID should be unique"
+    },
+    {
+      "field": "Income",
+      "rule_type": "completeness",
+      "description": "Income should not be null"
+    },
+    {
+      "field": "Age",
+      "rule_type": "validity",
+      "check": "Age BETWEEN 18 AND 99",
+      "description": "Age should be within a valid range"
+    },
+    {
+      "field": "Dt_Customer",
+      "rule_type": "format_check",
+      "check": "IS_DATE(Dt_Customer)",
+      "description": "Customer date should be valid date format"
+    },
+    {
+      "field": "Marital_Status",
+      "rule_type": "validity",
+      "allowed_values": ["Single", "Married", "Divorced", "Widow", "Together"],
+      "description": "Must match predefined marital categories"
+    },
+    {
+      "field": "Year_Birth",
+      "rule_type": "consistency",
+      "check": "Year_Birth <= EXTRACT(YEAR FROM CURRENT_DATE())",
+      "description": "Birth year should not be in the future"
+    }
+  ]
+}
